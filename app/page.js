@@ -1,31 +1,48 @@
-import Link from 'next/link'
-import { Container, Typography, Box, Button } from '@mui/material'
+// app/page.tsx
+'use client'; // 添加这行，因为首页有交互组件
+
+import { Container, Box, Button, Typography } from '@mui/material';
+import NextLink from 'next/link';
 
 export default function Home() {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4, textAlign: 'center' }}>
-        <Typography variant="h3" component="h1" gutterBottom>
+    <Container component="main" maxWidth="sm">
+      <Box sx={{
+        marginTop: 8,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+      }}>
+        <Typography component="h1" variant="h4" gutterBottom>
           欢迎使用认证系统
         </Typography>
-        <Box sx={{ mt: 4 }}>
+        
+        <Typography variant="body1" sx={{ mb: 3 }}>
+          请选择操作
+        </Typography>
+        
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          {/* 修复 Link 使用方式 */}
           <Button 
+            component={NextLink} 
+            href="/login" 
             variant="contained" 
-            component={Link} 
-            href="/login"
-            sx={{ mr: 2 }}
+            size="large"
           >
             登录
           </Button>
+          
           <Button 
+            component={NextLink} 
+            href="/signup" 
             variant="outlined" 
-            component={Link} 
-            href="/signup"
+            size="large"
           >
             注册
           </Button>
         </Box>
       </Box>
     </Container>
-  )
+  );
 }
